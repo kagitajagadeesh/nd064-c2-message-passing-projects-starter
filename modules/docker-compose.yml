@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  api:
+    build: api
+    command: ["flask", "run", "--host=0.0.0.0"]
+    volumes:
+      - ./api:/backend
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+    ports:
+      - "5000:5000"
+
+  grpc_api:
+    build: ./api/app/grpc_api
+    command: ["python", "-m", "grpc_writer"]
+    volumes:
+      - ./api:/grpc_backend
+    ports:
+      - "5008:5008"
+
+  kafka_api:
+    build: ./api/app/kafka_api
+    command: ["python", "-m", "kafka_consumer"]
+    volumes:
+      - ./api:/kafka_backend
+  
+  persons_api:
+    build: persons_api
+    command: ["flask", "run", "--host=0.0.0.0"]
+    volumes:
+      - ./persons_api:/backend
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+    ports:
+      - "5001:5000"

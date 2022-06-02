@@ -1,0 +1,78 @@
+After defining location.proto in grpc_api folder, the below comand is exeuted to get location_pb2.py and location_pb2_grpc.py
+python -m grpc_tools.protoc -I./ --python_out=./ --grpc_python_out=./ location.proto
+
+Once i started grpc server, the same files location_pb2.py and location_pb2_grpc.py which i copied to the location where i planned to call
+grpc server with client.
+
+The grpc server is running on localhost:30005
+
+I defined Request schema in location.proto as
+message Request {
+  int32 person_id = 1;
+  string start_date = 2;
+  string end_date = 3;
+  int32 meters = 4;
+}
+ 
+message LocationMessage {
+  int32 person_id = 1;
+  string longitude = 2;
+  string latitude = 3;
+  int32 meters = 4;
+  string start_date = 5;
+  string end_date = 6;
+}
+I defined LocationMessage different to actual db schema because my intention of implementing grpc server is to help fetch person connections which is helpful in connectionService
+As i didn't focus on service logic
+
+To get a person locations with the url mentioned above and following request payload - {
+	"person_id": 6,
+	"start_date": "2020-01-01",
+	"end_date": "2020-12-30",
+	"meters": 500
+}
+
+reponse - {
+	"locations": [
+		{
+			"person_id": 5,
+			"longitude": "37.5536299999999983",
+			"latitude": "-122.2908829999999938",
+			"meters": 500,
+			"start_date": "2020-01-01",
+			"end_date": "2020-12-30"
+		},
+		{
+			"person_id": 5,
+			"longitude": "37.5534409999999994",
+			"latitude": "-122.2905240000000049",
+			"meters": 500,
+			"start_date": "2020-01-01",
+			"end_date": "2020-12-30"
+		},
+		{
+			"person_id": 5,
+			"longitude": "37.5536299999999983",
+			"latitude": "-122.2908829999999938",
+			"meters": 500,
+			"start_date": "2020-01-01",
+			"end_date": "2020-12-30"
+		},
+		{
+			"person_id": 5,
+			"longitude": "-106.5719521000000043",
+			"latitude": "35.0585135999999977",
+			"meters": 500,
+			"start_date": "2020-01-01",
+			"end_date": "2020-12-30"
+		},
+		{
+			"person_id": 5,
+			"longitude": "37.5536299999999983",
+			"latitude": "-122.2908829999999938",
+			"meters": 500,
+			"start_date": "2020-01-01",
+			"end_date": "2020-12-30"
+		}
+	]
+}
