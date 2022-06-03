@@ -6,8 +6,8 @@ WORKDIR .
 RUN apk add --no-cache gcc musl-dev linux-headers geos libc-dev postgresql-dev
 # COPY requirements.txt /backend/requirements.txt
 COPY requirements.txt requirements.txt
-RUN pip install --upgrade pip
-RUN pip install grpcio-tools
+# RUN pip install --upgrade pip
+# RUN pip install grpcio-tools
 RUN pip install -r requirements.txt
 
 EXPOSE 5001

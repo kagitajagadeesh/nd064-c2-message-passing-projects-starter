@@ -1,18 +1,14 @@
-From Project-starter monolith services, i decoupled persons services which can run and managable independently.
-Also considering expansion of user authentication and authorization services in future.
-
-Once the monolith is split into micro services(persons service), communication between persons and locations is developed using grpc message passing technique
-which helps to serve person locations data for a give person_id. Without concentrating much on services logic, i focused on implementing grpc to get the corresponding data
-to fetch person connections.
+Monlith service is decoupled in Persons service, Connection service, Location sevice.
+Person and Connection are restful flask applications which helps to fetch persons and person locations.
+Location Service is a GRPC serice which helps to capture near real time locations with profobuffs mechanism.
 
 Capturing persons near real time location is very challenging with asynchronous REST services, so i decided to implement kafka technique
 which allowed to put location data in message queue handled by producer and kafka consumer is ready to insert into postgresql db.
 The most exciting part for me in this project is understanding kafka message queuing and implementing real time data.
 
-Kafka server is helping location server to capture real time location data and grpc server is helping to fetch persons connections with ease as it is independent service
+Kafka server is helping location server to capture real time location data and grpc server is helping to get location protobuffs in real time.
 Overall Client traffic management is well planned with the help of micro-service split, kafka and grpc.
 
-I maintained same routes and controllers of the project starter, therefore no change in API documentation. As the monolith is split into persons micro service,
 persons API documentation can available @localhost:30002 and obviously location routes documentation is available @localhost:30001
 
 

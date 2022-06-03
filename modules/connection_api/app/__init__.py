@@ -3,13 +3,13 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_restx import Api
 from flask_sqlalchemy import SQLAlchemy
-from kafka import KafkaProducer
+# from kafka import KafkaProducer
 
 db = SQLAlchemy()
 
-TOPIC_NAME = 'locations'
-KAFKA_SERVER = os.environ.get("KAFKA_URI", "kafka:9092")
-producer = KafkaProducer(bootstrap_servers=KAFKA_SERVER)
+# TOPIC_NAME = 'locations'
+# KAFKA_SERVER = os.environ.get("KAFKA_URI", "kafka:9092")
+# producer = KafkaProducer(bootstrap_servers=KAFKA_SERVER)
 
 def create_app(env=None):
     from app.config import config_by_name

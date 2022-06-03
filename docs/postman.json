@@ -26,12 +26,12 @@
 			"response": []
 		},
 		{
-			"name": "person_connections(internal grpc)",
+			"name": "person_connections",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:30002/api/persons/5/connection?start_date=2020-01-01&end_date=2020-12-30&distance=5",
+					"raw": "http://localhost:30001/api/persons/5/connection?start_date=2020-01-01&end_date=2020-12-30&distance=5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -56,34 +56,6 @@
 							"key": "distance",
 							"value": "5"
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "cretate_location(internal kafka)",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"person_id\": 5,\n\t\"longitude\": \"37.55363\",\n\t\"latitude\": \"-122.290883\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:30001/api/locations",
-					"host": [
-						"localhost"
-					],
-					"port": "30001",
-					"path": [
-						"api",
-						"locations"
 					]
 				}
 			},

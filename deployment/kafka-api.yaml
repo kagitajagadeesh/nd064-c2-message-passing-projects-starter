@@ -6,10 +6,9 @@ metadata:
   name: kafka-api
 spec:
   ports:
-  - name: "5010"
-    port: 5010
-    targetPort: 5010
-    nodePort: 30010
+  - name: "9092"
+    port: 9092
+    targetPort: 9092
   selector:
     service: kafka-api
   type: NodePort
@@ -32,7 +31,7 @@ spec:
     spec:
       containers:
       - image: jagadeesh8877/kafka-api:latest
-        name: kafka-api
+        name: kafka-api-container
         imagePullPolicy: Always
         env:
         - name: DB_USERNAME
@@ -60,14 +59,10 @@ spec:
             configMapKeyRef:
               name: db-env
               key: DB_PORT
-        - name: GRPC_PORT
-          valueFrom:
-            configMapKeyRef:
-              name: grpc-port
-              key: GRPC_PORT
         - name: KAFKA_URI
           valueFrom:
             configMapKeyRef:
               name: kafka-uri
               key: KAFKA_URI
       restartPolicy: Always
+        
