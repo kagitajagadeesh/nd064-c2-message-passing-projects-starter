@@ -23,3 +23,5 @@ To create a person locations with the url mentioned above and following request 
 	"longitude": "37.55363",
 	"latitude": "-122.290883"
 }
+
+Please refer sample grpc client.py is defined in modules/grpc_api

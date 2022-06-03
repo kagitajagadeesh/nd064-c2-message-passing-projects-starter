@@ -13,7 +13,7 @@ import location_pb2_grpc
 from kafka import KafkaProducer
 
 TOPIC_NAME = 'locations'
-KAFKA_SERVER = os.environ.get("KAFKA_URI", "host.docker.internal:9092")
+KAFKA_SERVER = os.environ.get("KAFKA_URI", "kafka:9092")
 
 logging.info('connecting to kafka ', KAFKA_SERVER)
 logging.info('connecting to kafka topic ', TOPIC_NAME)
@@ -21,7 +21,7 @@ logging.info('connecting to kafka topic ', TOPIC_NAME)
 producer = KafkaProducer(bootstrap_servers=KAFKA_SERVER)
 
 
-class LocationServicer(location_pb2_grpc.LocationServiceServicer):
+class LocationServicer(location_pb2_grpc.LocationService):
     # def Get(self, request, context):
     #     start_date = datetime.strptime(request.start_date, "%Y-%m-%d")
     #     end_date = datetime.strptime(request.end_date, "%Y-%m-%d")
